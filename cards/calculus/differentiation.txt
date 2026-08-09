@@ -1,0 +1,10 @@
+#separator:Tab
+#html:false
+#deck:Math List::Calculus
+#tags column:6
+#columns:ID	Front	Back	Speed	Topic	Tags
+poly_diff_001	Differentiate: x^n.	n x^(n-1)	reflex	calculus	math-list calculus powers differentiation reflex
+poly_diff_002	Differentiate: 4x^6.	24x^5	reflex	calculus	math-list calculus powers differentiation reflex
+poly_diff_003	Differentiate: x^-3.	-3x^-4	reflex	calculus	math-list calculus powers differentiation reflex
+poly_diff_004	Differentiate: 3x^(1/2).	(3/2)x^(-1/2)	reflex	calculus	math-list calculus powers differentiation reflex
+poly_diff_005	For differentiation of x^n, which happens first: multiply or change the power?	Multiply by the old power first; then subtract 1 from the power.	reflex	calculus	math-list calculus powers differentiation reflex

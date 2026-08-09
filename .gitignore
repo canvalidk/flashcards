@@ -1,0 +1,13 @@
+# Anki binary exports and local collections
+*.apkg
+*.colpkg
+*.anki2
+*.anki21
+collection.media/
+backups/
+
+# Generated and local development files
+__pycache__/
+*.py[cod]
+.DS_Store
+Thumbs.db

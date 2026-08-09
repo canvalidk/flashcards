@@ -1,0 +1,11 @@
+#separator:Tab
+#html:false
+#deck:Math List::Calculus
+#tags column:6
+#columns:ID	Front	Back	Speed	Topic	Tags
+poly_int_001	Integrate: x^n dx, for n != -1.	x^(n+1)/(n+1) + C	reflex	calculus	math-list calculus powers integration reflex
+poly_int_002	Integrate: 4x^6 dx.	(4/7)x^7 + C	reflex	calculus	math-list calculus powers integration reflex
+poly_int_003	Integrate: x^-3 dx.	-(1/2)x^-2 + C	reflex	calculus	math-list calculus powers integration reflex
+poly_int_004	Integrate: 3x^(1/2) dx.	2x^(3/2) + C	reflex	calculus	math-list calculus powers integration reflex
+poly_int_005	Integrate: x^-1 dx.	ln|x| + C	reflex	calculus	math-list calculus powers integration reflex exception
+poly_int_006	For integration of x^n, which happens first: add or divide?	Add 1 to the power first; then divide by the new power.	reflex	calculus	math-list calculus powers integration reflex
