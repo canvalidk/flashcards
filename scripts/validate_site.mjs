@@ -29,5 +29,9 @@ for (const card of cards) {
   }
 }
 
+if (!cards.some((card) => card.front.includes("\\("))) {
+  throw new Error("The site data contains no inline MathJax expressions.");
+}
+
 const families = [...new Set(cards.map((card) => card.family))].sort();
 console.log(`Validated site data: ${cards.length} cards; families: ${families.join(", ")}.`);

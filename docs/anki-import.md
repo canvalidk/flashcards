@@ -17,6 +17,10 @@ separators, and supported file headers to describe their columns.
 6. Import. The header presets the destination deck to
    `Math List::Calculus`.
 
+The card fields use MathJax-compatible TeX between `\(` and `\)`. Current
+desktop and mobile Anki clients render this notation directly; no LaTeX
+installation or generated equation images are required.
+
 The stable `ID` is deliberately the first note field. Anki uses the first field
 for duplicate detection, so later imports can update a note without discarding
 its scheduling history. Do not change an existing card's ID.

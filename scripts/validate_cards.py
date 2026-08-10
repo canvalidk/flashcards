@@ -58,6 +58,16 @@ def validate_file(path: Path, seen_ids: dict[str, Path]) -> tuple[list[str], int
             if not card[field].strip():
                 errors.append(f"{path}:{line_number}: {field} must not be blank")
 
+        for field in ("Front", "Back"):
+            inline_open = card[field].count(r"\(")
+            inline_close = card[field].count(r"\)")
+            display_open = card[field].count(r"\[")
+            display_close = card[field].count(r"\]")
+            if inline_open != inline_close or display_open != display_close:
+                errors.append(
+                    f"{path}:{line_number}: {field} has unbalanced MathJax delimiters"
+                )
+
         card_id = card["ID"]
         if card_id in seen_ids:
             errors.append(

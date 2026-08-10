@@ -1,6 +1,7 @@
 import { parseCardFile, titleCase } from "./card-data.mjs";
 
 const manifestUrl = new URL("./cards/manifest.json", import.meta.url);
+const mathJaxUrl = "https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js";
 
 const elements = {
   loading: document.querySelector("#loading-state"),
@@ -42,7 +43,36 @@ const state = {
   revealed: false,
   fluent: 0,
   again: 0,
+  mathReady: false,
+  renderedCardId: null,
 };
+
+async function loadMathJax() {
+  window.MathJax = {
+    tex: {
+      inlineMath: [["\\(", "\\)"]],
+      displayMath: [["\\[", "\\]"]],
+    },
+    chtml: {
+      matchFontHeight: false,
+    },
+  };
+
+  const script = document.createElement("script");
+  script.src = mathJaxUrl;
+  script.async = true;
+  script.crossOrigin = "anonymous";
+
+  await new Promise((resolve, reject) => {
+    script.addEventListener("load", resolve, { once: true });
+    script.addEventListener("error", () => reject(new Error("MathJax could not be loaded.")), {
+      once: true,
+    });
+    document.head.append(script);
+  });
+
+  await window.MathJax.startup.promise;
+}
 
 async function loadCards() {
   const manifestResponse = await fetch(manifestUrl);
@@ -102,7 +132,27 @@ function resetSession({ shouldShuffle = false } = {}) {
   state.revealed = false;
   state.fluent = 0;
   state.again = 0;
+  state.renderedCardId = null;
   render();
+}
+
+function renderCardText(card) {
+  if (state.renderedCardId === card.id) return;
+
+  if (state.mathReady) {
+    window.MathJax.typesetClear([elements.question, elements.answer]);
+  }
+
+  elements.question.textContent = card.front;
+  elements.answer.textContent = card.back;
+  state.renderedCardId = card.id;
+
+  if (state.mathReady) {
+    window.MathJax.typesetPromise([elements.question, elements.answer]).catch(() => {
+      elements.error.hidden = false;
+      elements.error.textContent = "One equation could not be typeset. Its source text is still shown.";
+    });
+  }
 }
 
 function setProgress(current, total) {
@@ -142,8 +192,7 @@ function render() {
 
   const card = state.queue[state.index];
   elements.cardArea.hidden = false;
-  elements.question.textContent = card.front;
-  elements.answer.textContent = card.back;
+  renderCardText(card);
   elements.speedChip.textContent = titleCase(card.speed);
   elements.topic.textContent = titleCase(card.family);
   elements.position.textContent = `Card ${state.index + 1} of ${state.queue.length}`;
@@ -166,7 +215,7 @@ function reveal() {
   if (state.revealed || state.index >= state.queue.length) return;
   state.revealed = true;
   render();
-  elements.announcer.textContent = `Answer: ${state.queue[state.index].back}`;
+  elements.announcer.textContent = "Answer revealed.";
 }
 
 function grade(result) {
@@ -219,7 +268,9 @@ document.addEventListener("keydown", (event) => {
 });
 
 try {
-  state.allCards = await loadCards();
+  const [cards] = await Promise.all([loadCards(), loadMathJax()]);
+  state.allCards = cards;
+  state.mathReady = true;
   populateFilters();
   elements.libraryCount.textContent = `${state.allCards.length} cards · Git-backed`;
   resetSession({ shouldShuffle: true });

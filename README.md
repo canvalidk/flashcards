@@ -25,8 +25,8 @@ single flashcard application.
 
 Open the [Math List web viewer](https://canvalidk.github.io/flashcards/) to
 practice in a phone or desktop browser. It reads the canonical card files
-directly, supports filtering and shuffling, and returns cards marked **Again**
-to the current stack.
+directly, typesets their TeX notation with MathJax, supports filtering and
+shuffling, and returns cards marked **Again** to the current stack.
 
 ## Performance classes
 

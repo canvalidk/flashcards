@@ -27,3 +27,16 @@ powers so that the direction of the operation becomes automatic.
 4. Use one of the three allowed speed classes.
 5. Add space-separated tags, including the speed class.
 6. Run `python scripts/validate_cards.py`.
+
+## Mathematical notation
+
+Use MathJax-compatible TeX for every mathematical expression. Wrap inline
+expressions in `\(` and `\)`, and use braces to make powers and fractions
+unambiguous:
+
+```text
+Differentiate: \(3x^{1/2}\).
+\(\frac{3}{2}x^{-1/2}\)
+```
+
+This single notation is rendered by both the web viewer and Anki.
