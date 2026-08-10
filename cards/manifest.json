@@ -1,6 +1,8 @@
 {
   "files": [
     "cards/calculus/differentiation.txt",
-    "cards/calculus/integration.txt"
+    "cards/calculus/integration.txt",
+    "cards/series/approximations.txt",
+    "cards/trigonometry/identities.txt"
   ]
 }

@@ -1,0 +1,8 @@
+#separator:Tab
+#html:false
+#deck:Math List::Trigonometry
+#tags column:6
+#columns:ID	Front	Back	Speed	Topic	Tags
+power_reduction_001	Rewrite \(\sin^2 x\) using \(\cos 2x\).	\(\sin^2 x=\frac{1-\cos 2x}{2}\)	reflex	trigonometry	math-list trigonometry identities power-reduction reflex
+power_reduction_002	Rewrite \(\cos^2 x\) using \(\cos 2x\).	\(\cos^2 x=\frac{1+\cos 2x}{2}\)	reflex	trigonometry	math-list trigonometry identities power-reduction reflex
+double_angle_001	Rewrite \(\sin x\cos x\) using \(\sin 2x\).	\(\sin x\cos x=\frac{1}{2}\sin 2x\)	reflex	trigonometry	math-list trigonometry identities double-angle reflex

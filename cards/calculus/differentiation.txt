@@ -8,3 +8,5 @@ poly_diff_002	Differentiate: \(4x^6\).	\(24x^5\)	reflex	calculus	math-list calcu
 poly_diff_003	Differentiate: \(x^{-3}\).	\(-3x^{-4}\)	reflex	calculus	math-list calculus powers differentiation reflex
 poly_diff_004	Differentiate: \(3x^{1/2}\).	\(\frac{3}{2}x^{-1/2}\)	reflex	calculus	math-list calculus powers differentiation reflex
 poly_diff_005	For differentiation of \(x^n\), which happens first: multiply or change the power?	Multiply by the old power \(n\) first; then subtract \(1\) from the power.	reflex	calculus	math-list calculus powers differentiation reflex
+chain_diff_001	Differentiate: \((1+2x)^3\).	\(6(1+2x)^2\)	reflex	calculus	math-list calculus chain-rule differentiation reflex
+chain_diff_002	Differentiate: \(\sqrt{1+5x}\).	\(\frac{5}{2\sqrt{1+5x}}\)	reflex	calculus	math-list calculus chain-rule differentiation radicals reflex

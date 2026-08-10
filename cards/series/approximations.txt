@@ -1,0 +1,7 @@
+#separator:Tab
+#html:false
+#deck:Math List::Series
+#tags column:6
+#columns:ID	Front	Back	Speed	Topic	Tags
+small_approx_001	For \(|x|\ll 1\), approximate \(e^x\).	\(e^x\approx 1+x\)	reflex	series	math-list series approximation exponential reflex
+small_approx_002	For \(|x|\ll 1\), approximate \(\ln(1+x)\).	\(\ln(1+x)\approx x\)	reflex	series	math-list series approximation logarithm reflex
