@@ -4,12 +4,14 @@
 from __future__ import annotations
 
 import csv
+import json
 import sys
 from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
 CARDS_DIR = ROOT / "cards"
+MANIFEST = CARDS_DIR / "manifest.json"
 EXPECTED_COLUMNS = ["ID", "Front", "Back", "Speed", "Topic", "Tags"]
 ALLOWED_SPEEDS = {"reflex", "fluent", "recognition"}
 
@@ -93,6 +95,24 @@ def main() -> int:
     all_errors: list[str] = []
     seen_ids: dict[str, Path] = {}
     total_cards = 0
+
+    try:
+        manifest_data = json.loads(MANIFEST.read_text(encoding="utf-8"))
+        manifest_files = manifest_data["files"]
+        if not isinstance(manifest_files, list) or not all(
+            isinstance(item, str) for item in manifest_files
+        ):
+            raise ValueError("'files' must be a list of paths")
+    except (OSError, json.JSONDecodeError, KeyError, ValueError) as exc:
+        all_errors.append(f"{MANIFEST}: invalid manifest: {exc}")
+        manifest_files = []
+
+    expected_manifest_files = [path.relative_to(ROOT).as_posix() for path in files]
+    if sorted(manifest_files) != expected_manifest_files:
+        all_errors.append(
+            f"{MANIFEST}: files must match the card sources; expected "
+            f"{expected_manifest_files!r}, got {manifest_files!r}"
+        )
 
     for path in files:
         errors, card_count = validate_file(path, seen_ids)

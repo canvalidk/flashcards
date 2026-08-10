@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#173c35">
+    <meta
+      name="description"
+      content="Latency-first mathematical flashcards for physics."
+    >
+    <title>Math List — Reflex practice for physics</title>
+    <link rel="stylesheet" href="./styles.css">
+    <script type="module" src="./app.js"></script>
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="site-header">
+        <a class="brand" href="./" aria-label="Math List home">
+          <span class="brand-mark" aria-hidden="true">M</span>
+          <span>
+            <strong>Math List</strong>
+            <small>Physics fluency, one move at a time</small>
+          </span>
+        </a>
+        <div class="vault-status">
+          <span class="status-dot" aria-hidden="true"></span>
+          <span id="library-count">Loading the vault…</span>
+        </div>
+      </header>
+
+      <main>
+        <section class="hero" aria-labelledby="page-title">
+          <p class="eyebrow">Latency-first practice</p>
+          <h1 id="page-title">Build speed where it matters.</h1>
+          <p class="hero-copy">
+            Train the small mathematical moves that should never interrupt the
+            physics. For a reflex card, hesitation counts as <em>Again</em>.
+          </p>
+        </section>
+
+        <section class="practice-panel" aria-label="Flashcard practice">
+          <div class="toolbar">
+            <label>
+              <span>Card family</span>
+              <select id="family-filter">
+                <option value="all">All families</option>
+              </select>
+            </label>
+            <label>
+              <span>Speed</span>
+              <select id="speed-filter">
+                <option value="all">All speeds</option>
+                <option value="reflex">Reflex</option>
+                <option value="fluent">Fluent</option>
+                <option value="recognition">Recognition</option>
+              </select>
+            </label>
+            <button class="secondary-button" id="shuffle-button" type="button">
+              <span aria-hidden="true">↝</span> Shuffle
+            </button>
+          </div>
+
+          <div class="session-line">
+            <div>
+              <span id="position-label">Card 0 of 0</span>
+              <span class="session-score" id="session-score">0 fluent · 0 again</span>
+            </div>
+            <div
+              class="progress-track"
+              role="progressbar"
+              aria-label="Session progress"
+              aria-valuemin="0"
+              aria-valuemax="100"
+              aria-valuenow="0"
+              id="progress-track"
+            >
+              <span id="progress-bar"></span>
+            </div>
+          </div>
+
+          <div id="loading-state" class="loading-state" role="status">
+            <span class="loading-pulse" aria-hidden="true"></span>
+            Opening the card vault…
+          </div>
+
+          <section id="card-area" class="card-area" hidden>
+            <article
+              class="flashcard"
+              id="flashcard"
+              tabindex="0"
+              aria-label="Flashcard; press Space to reveal the answer"
+            >
+              <div class="card-topline">
+                <span class="speed-chip" id="speed-chip">Reflex</span>
+                <span class="topic-label" id="topic-label">Calculus</span>
+              </div>
+
+              <div class="question-side">
+                <p class="side-label">Prompt</p>
+                <h2 id="question-text"></h2>
+              </div>
+
+              <div class="answer-side" id="answer-side" aria-hidden="true">
+                <div class="answer-rule" aria-hidden="true"></div>
+                <p class="side-label">Answer</p>
+                <p id="answer-text"></p>
+              </div>
+
+              <p class="reveal-hint" id="reveal-hint">Tap the card or press Space</p>
+            </article>
+
+            <div class="action-row" id="reveal-actions">
+              <button class="primary-button" id="reveal-button" type="button">
+                Show answer
+              </button>
+            </div>
+
+            <div class="grade-row" id="grade-actions" hidden>
+              <button class="again-button" id="again-button" type="button">
+                <span>Again</span>
+                <small>There was hesitation</small>
+              </button>
+              <button class="got-it-button" id="got-it-button" type="button">
+                <span>Fluent</span>
+                <small>It came fast enough</small>
+              </button>
+            </div>
+          </section>
+
+          <section id="empty-state" class="empty-state" hidden>
+            <p class="eyebrow">No cards here yet</p>
+            <h2>Try another filter.</h2>
+            <button class="secondary-button" id="clear-filters" type="button">
+              Show all cards
+            </button>
+          </section>
+
+          <section id="complete-state" class="complete-state" hidden>
+            <div class="completion-mark" aria-hidden="true">✓</div>
+            <p class="eyebrow">Session complete</p>
+            <h2 id="complete-title">The stack is clear.</h2>
+            <p id="complete-copy"></p>
+            <button class="primary-button" id="restart-button" type="button">
+              Run the stack again
+            </button>
+          </section>
+
+          <p class="error-message" id="error-message" role="alert" hidden></p>
+        </section>
+
+        <section class="principle-strip" aria-label="Practice principles">
+          <p><strong>Reflex</strong><span>Immediate</span></p>
+          <p><strong>Fluent</strong><span>10–30 seconds</span></p>
+          <p><strong>Recognition</strong><span>Name the tool</span></p>
+        </section>
+      </main>
+
+      <footer>
+        <p>Canonical cards live in Git. This viewer reads them directly.</p>
+        <p class="shortcuts">
+          <span><kbd>Space</kbd> reveal</span>
+          <span><kbd>1</kbd> again</span>
+          <span><kbd>2</kbd> fluent</span>
+        </p>
+      </footer>
+    </div>
+
+    <div class="sr-only" id="announcer" aria-live="polite"></div>
+    <noscript>This flashcard viewer requires JavaScript.</noscript>
+  </body>
+</html>

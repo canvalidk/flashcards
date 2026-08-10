@@ -21,6 +21,13 @@ If yes, it belongs here.
 The source remains searchable, reviewable, recoverable, and independent of any
 single flashcard application.
 
+## Practice online
+
+Open the [Math List web viewer](https://canvalidk.github.io/flashcards/) to
+practice in a phone or desktop browser. It reads the canonical card files
+directly, supports filtering and shuffling, and returns cards marked **Again**
+to the current stack.
+
 ## Performance classes
 
 | Class | Standard |
@@ -35,7 +42,11 @@ answer was slow, mark it **Again**.
 ## Repository layout
 
 ```text
+index.html
+app.js
+styles.css
 cards/
+  manifest.json
   calculus/
     differentiation.txt
     integration.txt
@@ -70,6 +81,7 @@ Validate the repository before importing or committing:
 
 ```powershell
 python scripts/validate_cards.py
+node scripts/validate_site.mjs
 ```
 
 Then follow [the Anki import guide](docs/anki-import.md).
